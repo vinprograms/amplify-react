@@ -60,7 +60,7 @@ const App = ({ signOut }) => {
   return (
     <View className="App">
       <Heading level={1}>Remote Monitoring</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
+      <View as="form" margin="2rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
             name="name"
@@ -82,9 +82,25 @@ const App = ({ signOut }) => {
             Store Data
           </Button>
         </Flex>
+		<div className="tblDiv">
+			<table>
+				<tbody>
+					<tr>
+						<th>Measurement</th>
+						<th>Value</th>
+					</tr>
+					{notes.map((note) => (
+						<tr key={note.id || note.name}>
+						<td>{note.name}</td>
+						<td>{note.description}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
       </View>
       <Heading level={2}>Stored Measurements</Heading>
-      <View margin="3rem 0">
+      <View margin="2rem 0">
         {notes.map((note) => (
           <Flex
             key={note.id || note.name}
@@ -97,7 +113,7 @@ const App = ({ signOut }) => {
             </Text>
             <Text as="span">{note.description}</Text>
             <Button variation="link" onClick={() => deleteNote(note)}>
-              Delete note
+              Delete
             </Button>
           </Flex>
         ))}
